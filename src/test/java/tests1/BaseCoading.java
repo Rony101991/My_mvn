@@ -1,11 +1,9 @@
 package tests1;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.AfterMethod;
 
@@ -42,6 +40,13 @@ public class BaseCoading {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
         FileHandler.copy(source, new File("./myFailedScreenShot/at&t001"));
+    }
+    public void actionMethod(){
+        Actions actions = new Actions(driver);
+        WebElement rightClick = driver.findElement(By.xpath("//button[@aria-label='EMT/Paramedic']"));
+        actions.contextClick(rightClick).build().perform();
+
+
     }
     @AfterMethod
     void closeBrowser() throws IOException {
